@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'features/splash/presentation/views/splash_view.dart';
+import 'core/routes/go_router.dart';
 
 class Dalel extends StatelessWidget {
   const Dalel({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: SplashView());
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+        routerConfig:router ,
+        );
   }
 }
+
