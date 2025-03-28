@@ -4,16 +4,17 @@ import '../../../../../core/utils/app_text_styles.dart';
 import '../../../data/models/on_boarding_model.dart';
 
 class OnBoardingBody extends StatelessWidget {
-  OnBoardingBody({super.key});
-  PageController _controller = PageController();
-
+  OnBoardingBody({super.key, required this.controller, this.onPageChanged});
+final PageController controller;
+final void Function(int)? onPageChanged;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height:500 ,
       child: PageView.builder(
+        onPageChanged: onPageChanged,
         physics: BouncingScrollPhysics(),
-        controller: _controller,
+        controller: controller,
         itemCount: onBoardingData.length,
         itemBuilder: (context, index) {
           return Column(
@@ -29,7 +30,7 @@ class OnBoardingBody extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 24),
-              CustomSmoothPageIndicator(controller: _controller),
+              CustomSmoothPageIndicator(controller: controller),
               SizedBox(height: 32),
               Text(
                 onBoardingData[index].title,

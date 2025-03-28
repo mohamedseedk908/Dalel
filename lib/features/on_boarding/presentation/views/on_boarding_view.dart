@@ -1,14 +1,18 @@
-import 'package:dalel/core/utils/app_strings.dart';
-import 'package:dalel/core/utils/app_text_styles.dart';
+import 'package:dalel/core/functions/navigation.dart';
 import 'package:dalel/features/on_boarding/presentation/views/widgets/custom_nav_bar.dart';
+import 'package:dalel/features/on_boarding/presentation/views/widgets/get_buttons.dart';
 import 'package:dalel/features/on_boarding/presentation/views/widgets/on_boarding_body.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/widgets/custom_Button.dart';
+class OnBoardingView extends StatefulWidget {
+  OnBoardingView({super.key});
+  @override
+  State<OnBoardingView> createState() => _OnBoardingViewState();
+}
 
-class OnBoardingView extends StatelessWidget {
-  const OnBoardingView({super.key});
-
+class _OnBoardingViewState extends State<OnBoardingView> {
+  final PageController _controller = PageController(initialPage: 0);
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -19,10 +23,21 @@ class OnBoardingView extends StatelessWidget {
             physics: BouncingScrollPhysics(),
             children: [
               SizedBox(height: 40),
-              CustomNavBar(),
-              OnBoardingBody(),
-              SizedBox(height: 88,),
-              CustomButton(),
+              CustomNavBar(
+                onForcePress: () {
+                  customNavigate(context, "/signUp");
+                },
+              ),
+              OnBoardingBody(
+                onPageChanged: (index) {
+                  setState(() {
+                    currentIndex = index;
+                  });
+                },
+                controller: _controller,
+              ),
+              SizedBox(height: 88),
+              GetButtons(controller: _controller, currentIndex: currentIndex),
               SizedBox(height: 17),
             ],
           ),
