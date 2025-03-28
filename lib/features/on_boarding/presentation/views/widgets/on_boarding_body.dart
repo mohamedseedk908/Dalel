@@ -1,7 +1,7 @@
 import 'package:dalel/features/on_boarding/presentation/views/widgets/custom_smooth_page_indicator.dart';
 import 'package:flutter/material.dart';
-import '../../../../../core/utils/app_assets.dart';
 import '../../../../../core/utils/app_text_styles.dart';
+import '../../../data/models/on_boarding_model.dart';
 
 class OnBoardingBody extends StatelessWidget {
   OnBoardingBody({super.key});
@@ -14,7 +14,7 @@ class OnBoardingBody extends StatelessWidget {
       child: PageView.builder(
         physics: BouncingScrollPhysics(),
         controller: _controller,
-        itemCount: 3,
+        itemCount: onBoardingData.length,
         itemBuilder: (context, index) {
           return Column(
             children: [
@@ -23,7 +23,7 @@ class OnBoardingBody extends StatelessWidget {
                 height: 290,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage(Assets.imagesOnBoarding),
+                    image: AssetImage(onBoardingData[index].image),
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -32,7 +32,7 @@ class OnBoardingBody extends StatelessWidget {
               CustomSmoothPageIndicator(controller: _controller),
               SizedBox(height: 32),
               Text(
-                "Explore The History with Dale In A Smart Way ",
+                onBoardingData[index].title,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: CustomTextStyles.poppins500style24,
@@ -40,7 +40,7 @@ class OnBoardingBody extends StatelessWidget {
               ),
               SizedBox(height: 16),
               Text(
-                "Explore The History with Dale In A Smart Way ",
+                onBoardingData[index].supTitle,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: CustomTextStyles.poppins300style16,
