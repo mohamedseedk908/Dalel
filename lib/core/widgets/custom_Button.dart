@@ -1,10 +1,12 @@
 import 'package:dalel/core/utils/app_colors.dart';
 import 'package:dalel/core/utils/app_strings.dart';
+import 'package:dalel/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, this.color, });
+  const CustomButton({super.key, this.color, this.text});
   final Color? color;
+  final String? text;
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +16,15 @@ class CustomButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {},
         style: ElevatedButton.styleFrom(
-          backgroundColor: color ?? AppColors.primaryColor ,
+          backgroundColor: color ?? AppColors.primaryColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
         ),
-        child: Text(AppStrings.next),
+        child: Text(
+          text ?? AppStrings.next,
+          style: CustomTextStyles.poppins500style24,
+        ),
       ),
     );
   }

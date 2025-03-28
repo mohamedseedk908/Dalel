@@ -13,17 +13,21 @@ class OnBoardingView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          children: [
-            SizedBox(height: 40),
-            CustomNavBar(),
-            OnBoardingBody(),
-            CustomButton(),
-            SizedBox(height: 17),
-          ],
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: ListView(
+            physics: BouncingScrollPhysics(),
+            children: [
+              SizedBox(height: 40),
+              CustomNavBar(),
+              OnBoardingBody(),
+              SizedBox(height: 88,),
+              CustomButton(),
+              SizedBox(height: 17),
+            ],
+          ),
         ),
       ),
     );
   }
 }
-
